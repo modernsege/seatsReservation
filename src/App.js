@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Seats from './data/db.json'
+import NumericInputDemo from './components/userInputSite'
+
 
 function App() {
+
+/*let db = Seats.seats.map((element) => {
+    return <div> 
+    <h2>ID: {element.id} </h2>
+    <h3>Czy zarezerwowane: {element.reserved ? 'Tak' : 'Nie' } {console.log("aaa",typeof(element.reserved))}</h3>
+  </div>
+  })
+*/
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper"> 
+      <NumericInputDemo></NumericInputDemo>
     </div>
   );
 }
