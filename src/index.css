@@ -5,10 +5,10 @@
 }
 
 body{
-  height: 100%;
-  width: 100%;
-  background: rgb(34,73,113);
-  background: linear-gradient(264deg, rgba(34,73,113,1) 0%, rgba(21,74,92,1) 100%);
+  height: 100vh;
+  width: 100vh;
+  background: rgb(15,70,113);
+  background: linear-gradient(264deg, rgba(15,70,113,1) 0%, rgba(63,117,159,1) 100%);
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,0 +1,98 @@
+.seats{
+    height: 100%;
+    width: 900px;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.seat{
+    width: 50px;
+    height: 50px;
+    border: solid 1px white;
+    cursor: pointer;
+    margin: 5px;
+}
+.empty{
+    width: 50px;
+    height: 50px;
+    margin: 5px
+}
+
+.reserved-true{
+    background-color: rgb(29, 28, 28);
+    cursor:context-menu;
+}
+.reserved-false{
+    background-color: rgb(94, 94, 94);
+}
+
+.reserved-false:hover{
+    background-color: rgb(116, 115, 115);
+}
+
+.reserved-to-be-reserved{
+    background-color: rgb(218, 86, 26);
+}
+
+.reserved-to-be-reserved:hover{
+    background-color: rgb(245, 106, 42);
+}
+
+.seat-information-bar{
+    margin-top: 75px;
+    width: 900px;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.available-seats, .reserved-seats, .your-choice{
+    width: 50px;
+    height: 50px;
+    border: solid 1px white;
+
+}
+
+.available-seats{
+    background-color: rgb(94, 94, 94)
+}
+
+.reserved-seats{
+    background-color: rgb(29, 28, 28);
+}
+
+.your-choice{
+    background-color: rgb(218, 86, 26);
+}
+
+.in-bar-divs{
+    display: flex;
+}
+
+.in-bar-span{
+    margin-left: 10px;
+}
+
+
+.reserve-btn{
+    padding:5px;
+    width: 200px;
+    height: 50px;
+    background: none;
+    cursor: pointer;
+    border: 1px solid white;
+    transition: 0.2s ease;
+}
+
+.reserve-btn:hover{
+    border-color: rgb(0, 97, 201);
+    color: white;
+}

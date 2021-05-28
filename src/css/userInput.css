@@ -1,5 +1,5 @@
 .user-input-site-wrapper{
-    width: 100%;
+    width: 330px;
     height: 500px;
     justify-content: center;
     display: flex;
@@ -30,10 +30,15 @@
     background: none;
     cursor: pointer;
     border: 1px solid white;
-    border-radius: 5px;
     transition: 0.2s ease;
 }
 
 .user-input-button:hover{
     border-color: rgb(0, 97, 201);
+    color: white;
+}
+
+.user-input-link{
+    color: white;
+    width: 100%;
 }

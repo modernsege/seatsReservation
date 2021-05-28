@@ -1,0 +1,27 @@
+.summary-wraper{
+    color: white;
+    font-size: 30px;
+}
+
+#summary-header{
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#summary-chosen-places{
+    
+}
+
+.chosen-place-information-div{
+    margin-bottom: 20px;
+    font-size: 25px;
+    max-height: 700px;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+#end-communicat{
+    font-weight: bold;
+}
