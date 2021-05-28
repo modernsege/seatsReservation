@@ -1,3 +1,13 @@
+# START JSON SERVER
+
+-Install JSON Server: npm install -g json-server
+-In repository directory: json-server --watch src/data/db.json
+
+# RUN APP 
+In the project directory: `npm start`
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
