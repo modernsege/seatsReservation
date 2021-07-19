@@ -2,15 +2,16 @@ import React, {useState, useEffect} from 'react';
 import '../css/seats.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { userInput, toReserve } from '../redux/actions/seatActions';
+import {useHistory } from 'react-router-dom';
 import ReserveBtn from './reserveButton'
 
 
 
 function Seats() {
- 
-
-  const selectedData = useSelector(state => state.allSeats)
+const selectedData = useSelector(state => state.allSeats)
         
+  let history = useHistory();
+
   const seats = []
   for(let i =0; i< selectedData.length; i++){
     seats.push(selectedData[i])
@@ -91,8 +92,6 @@ function Seats() {
       for(let j = 0; j<seatNumbers.length; j++)
       {
         if(reservedSeats[j].id==elementID){
-          console.log("reservedSeats[i-1].id==elementIDddddd", reservedSeats[j].id, elementID)
-          console.log("seatNumbers.indexOf(reservedSeats[i]",reservedSeats.indexOf(reservedSeats[j]))
           first = reservedSeats.indexOf(reservedSeats[j])
         }
       }
@@ -125,7 +124,6 @@ function Seats() {
   }
 
 
-
   function toggleSeat(element){
     let toggleElement = document.querySelector(`#${element.id}`);
     let toggleElements = document.querySelectorAll(".reserved-to-be-reserved");
@@ -135,7 +133,7 @@ function Seats() {
       oneSeat = true;
     }
 
-    if(seatsNextToEachOther==false || oneSeat){
+    if(seatsNextToEachOther==false || oneSeat ){
       if(element.reserved == false && toggleElement.className.includes("reserved-to-be-reserved"))
       {
         numberOfChosenSeats--;
@@ -164,18 +162,17 @@ function Seats() {
       }
     }
     else{
+      let seatsToReserve = []
       for(let i =0; i< toggleElements.length; i++){
-        if(element.reserved == false && toggleElements[i].className.includes("reserved-to-be-reserved"))
-        {
+        if(element.reserved == false && toggleElements[i].className.includes("reserved-to-be-reserved")){
           for(let i =0; i< toggleElements.length; i++){
             toggleElements[i].classList.remove('reserved-to-be-reserved');
             toggleElements[i].classList.add('reserved-false');
           }
-          numberOfChosenSeats=0;
         }
       }
-      if(element.reserved == false && toggleElement.className.includes("reserved-false")){
 
+      if(element.reserved == false && toggleElement.className.includes("reserved-false")){
         let neighboringPlaces = setSeatsNextToEachOther(element.id);
         if(neighboringPlaces){
           for(let i = 0; i< neighboringPlaces.length; i++){
@@ -184,33 +181,48 @@ function Seats() {
         }
       }
     }
+    toggleElements = document.querySelectorAll(".reserved-to-be-reserved");
+          for(let j =0;  j< toggleElements.length; j++){
+            if(toggleElements[j].className.includes("reserved-to-be-reserved")){
+              seatsToReserve.push(toggleElements[j].id)
+            }
+          }
+        dispatch(toReserve(seatsToReserve))
    }
   }
 
+
   let temp = 0;
   let state = true;
-for (let j =0; j< 10; j++){
-  state = true;
-  for (let i =0; i< 15; i++){
-    if(seats[temp].cords.y == i){
-      seats.slice(temp, temp+1).map((element) => {
-        seatDivs.push(<div onClick={() => {
-          if (element.reserved==true){
-            handleClick_reserved()
-          }
-            toggleSeat(element);
-          }
-            
-        } 
-          className={["seat", `row${element.cords.x}`, `place${element.cords.y}`, `reserved-${seatState(element)}`].join(' ') } id={element.id}>{element.id}</div>)
-      })
-      temp++;
-    }
-    else{
-      seatDivs.push(<div className="empty" >{""}</div>)
+  
+  if (selectedData.length>0){
+    for (let j =0; j< 10; j++){
+      state = true;
+      for (let i =0; i< 15; i++){
+        if(seats[temp].cords.y == i){
+          seats.slice(temp, temp+1).map((element) => {
+            seatDivs.push(<div onClick={() => {
+              if (element.reserved==true){
+                handleClick_reserved()
+              }
+                toggleSeat(element);
+              }
+                
+            } 
+              className={["seat", `row${element.cords.x}`, `place${element.cords.y}`, `reserved-${seatState(element)}`].join(' ') } id={element.id}></div>)
+          })
+          temp++;
+        }
+        else{
+          seatDivs.push(<div className="empty" >{""}</div>)
+        }
+      }
     }
   }
-}
+  else{
+    history.push('/')
+  }
+
 
 
   return (

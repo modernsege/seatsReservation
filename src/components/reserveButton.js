@@ -10,6 +10,7 @@ function ReserveBtn(props) {
     const userInputValue = useSelector(state => state.userInputValue)
     
     const handleClick = () =>{
+        console.log("props.numberOfChosenSeats",props.numberOfChosenSeats)
         if(props.numberOfChosenSeats == userInputValue){
             history.push('/summary');
            }

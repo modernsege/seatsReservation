@@ -8,19 +8,13 @@ function ButtonChck(props) {
     const [buttonAvailable, setButtonAvailable] = useState(false);
 
       const seatsNextToEachOther = useSelector(state => state.isCheckboxChecked)
+      
     useEffect(()=>{
-        if (seatsNextToEachOther)
-          if(props.value>5){
-            temp = !temp
-            alert("Może być maksymalnie 5 miejsc obok siebie")
+         if(buttonAvailable){
+           history.push('/seats');
           }
+       })
 
-          if(buttonAvailable){
-            history.push('/seats');
-           }
-          if(parseInt(props.value)>availabeSeats || parseInt(props.value)>150 )
-            alert(`Nie ma tylu wolnych miejsc. Aktualnie wolnych miejsc: ${availabeSeats}`)
-        })
       
         const userInputValue = useSelector(state => state.userInputValue)
 
@@ -102,12 +96,23 @@ function ButtonChck(props) {
 
 
     let history = useHistory();
-    let temp = true;
     const handleClick = () =>{
-        if(props.value != ''&& parseInt(props.value)<=150 && parseInt(props.value)>0 && temp && parseInt(props.value)<=availabeSeats){
-          setButtonAvailable(!buttonAvailable)
+      let seatsNextToEachOtherFlag = true;
+      if (seatsNextToEachOther){
+        if(props.value>5){
+          seatsNextToEachOtherFlag = false;
+          alert("Może być maksymalnie 5 miejsc obok siebie")
+        }
+      }
+
+      if(parseInt(props.value)>availabeSeats || parseInt(props.value)>150 )
+        alert(`Nie ma tylu wolnych miejsc. Aktualnie wolnych miejsc: ${availabeSeats}`)
+
+        if(props.value != '' && parseInt(props.value)<=150 && parseInt(props.value)>0 && parseInt(props.value)<=availabeSeats && seatsNextToEachOtherFlag){
+          console.log("123123123123")
+          setButtonAvailable(true)
           assignSeats()
-         }  
+         }
       }
   
 
